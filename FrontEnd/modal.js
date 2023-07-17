@@ -6,7 +6,7 @@ const closeModal = document.getElementsByClassName("close")[0];
 
 // Fonction pour ouvrir la modale
 function openModal() {
-  modal.style.display = "block";
+  modal.style.display = "flex";
 }
 
 // Fonction pour fermer la modale

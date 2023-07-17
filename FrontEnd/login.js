@@ -13,7 +13,7 @@ form.addEventListener('submit', function(event) {
   const password = document.querySelector('#password').value;
 
   // Envoi des données d'authentification
-  fetch('http://localhost:5678/api/login', {
+  fetch('http://localhost:5678/api/users/login/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -23,7 +23,7 @@ form.addEventListener('submit', function(event) {
     .then(response => {
       if (response.ok) {
         // Authentification réussie, rediriger vers la page d'accueil
-        window.location.href = '/accueil.html';
+        window.location.href = './index.html';
       } else {
         // Combinaison email/mot de passe incorrecte, afficher un message d'erreur
         alert('Identifiants incorrects');
