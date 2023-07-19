@@ -349,73 +349,131 @@ footer nav ul {
 }
 /* Styles pour la modale */
 .modal {
- display:flex;
- 
-  position: fixed;
-  
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.modal-content {
-  background-color: #fff;
-  margin: 10% auto;
-  padding: 20px;
-  border-radius: 10px;
-  width: 630px;
-  height: 731px;
-
-}
-.modal-content .modal-container {
-  margin: 5px 65px 55px 65px;
-  display: flex;
-  flex-wrap:wrap;
-  border-bottom: 1px solid black;
-  
-  }
-.modal-content .modal-container figure {
-  
   display:flex;
-  flex-direction: column;
-  flex-wrap:wrap;
-}
-.modal-content .modal-container img {
-  width:22%;
+  
+   position: fixed;
+   
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   overflow: auto;
+   background-color: rgba(0, 0, 0, 0.5);
+ }
+ 
+ .modal-content {
+   background-color: #fff;
+   margin: 10% auto;
+   padding: 20px;
+   border-radius: 10px;
+   width: 630px;
+   height: 731px;
+   
+ }
+ .modal-content .modal-container {
+  padding: 5px 55px 15px 55px;
+   display: flex;
+   flex-wrap:wrap;
+   border-bottom: 1px solid black;
+   
+   }
+ .modal-content .modal-container figure {
+  width: 20%;
+   display:flex;
+   flex-direction: column;
+   flex-wrap:wrap;
+ }
+ .modal-content .modal-container figure button {
+  left: 70px;
+    bottom: 145px;
+    position: relative;
+background: none;
+border:none;
+width: 22%;
+ }
+ .modal-content .modal-container figure button .fa-trash-can {
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+ }
+ .modal-content .modal-container img {
+  width:100%;
   box-sizing:border-box;
   padding : 10px 4px 10px 4px;
-}
-.modal .modal-content .close {
+ }
+ .modal .modal-content .close {
+   color: black;
+   float: right;
+   font-size: 28px;
+   font-weight: bold;
+   cursor: pointer;
+ }
+ .modal .modal-content h2 {
+   font-family: Work Sans;
+ font-size: 26px;
+ font-weight: 400;
+ line-height: 30px;
+ letter-spacing: 0em;
+ text-align: center;
+ color: black;
+ }
+ .modal .modal-content .fa-trash-can {
+   color: #FFF;
+   background-color: black;
+   width: 17px;
+   height: 17px;
+  cursor: pointer;
+ }
+ /* Styles pour le bouton */
+ .myprojects {
+  display:flex;
+  justify-content: center;
+  margin-bottom: 10px;
+ }
+ #portfolio  a {
   color: black;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-}
+   display: flex;
+   gap: 10px;
+   background-color: #fff;
+   border: none;
+   cursor: pointer;
+   position: relative;
+   top:10px;
+   left: 30px;
+   text-decoration: none;
+ }
+ #portfolio  a i {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+ }
+ #portfolio  a #Modif {
+   font-family: Work Sans;
+   font-weight: 400;
+   font-size: 14px;
+   line-height: 16.42px;
+   text-align: center;
+ }
+ .modal-content form input.add-picture {
+  width: 179px;
+  height:36px;
+border: none;
+display:flex;
+justify-content:center;
+margin-top:10px;
+margin-bottom:10px;
 
-/* Styles pour le bouton */
-#btnOpenModal {
+ }
+ .modal-content form {
   display: flex;
-  gap: 10px;
-  background-color: #fff;
+  flex-direction: column;
+  
+ }
+
+ .modal-content form .delete-gallery {
   border: none;
-  cursor: pointer;
-  position: relative;
-  top:10px;
-  left: 30px;
-}
-#btnOpenModal i {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-#btnOpenModal #Modif {
-  font-family: Work Sans;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 16.42px;
-  text-align: center;
-}
+  color: red;
+ background-color:#ffffff;
+ }
+ 
