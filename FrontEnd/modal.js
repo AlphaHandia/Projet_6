@@ -82,11 +82,20 @@ window.addEventListener("click", function (event) {
     closeModal();
   }
 });
+function openForm (){
+modalContainer.innerHTML="";
 
-// Gestion de l'envoi du formulaire
-const form = document.querySelector(".modalForm");
+  // Gestion de l'envoi du formulaire
+  const form = document.querySelector(".modalForm");
+  form.addEventListener("submit", formValidate);
 form.id = "modalForm";
 form.enctype = "multipart/form-data";
+
+const imageInput = document.createElement("input");
+imageInput.id = "imageInput";
+imageInput.type = "file";
+form.appendChild(imageInput);
+
 const titleInput = document.createElement("input");
 titleInput.id = "titleInput";
 titleInput.type = "text";
@@ -99,36 +108,31 @@ descriptionInput.type = "text";
 descriptionInput.placeholder = "Description";
 form.appendChild(descriptionInput);
 
-const imageInput = document.createElement("input");
-imageInput.id = "imageInput";
-imageInput.type = "file";
-form.appendChild(imageInput);
+
 
 const submitButton = document.createElement("button");
 submitButton.type = "submit";
 submitButton.textContent = "Valider";
+submitButton.classList = "submit-button"
 form.appendChild(submitButton);
 
-// Ajouter le formulaire à la modale
-
+}
+let addPicture = document.querySelector(".add-picture")
 
 // Événement clic sur l'input "Ajouter une photo"
-imageInput.addEventListener("click", function () {
-  
-});
+addPicture.addEventListener("click", openForm);
 
 // Déclaration de la variable pour stocker l'ID
 let currentId = 1;
 
-// Événement de soumission du formulaire
-form.addEventListener("submit", function (event) {
-  event.preventDefault(); // Empêche le rechargement de la page
 
+
+  
+function formValidate () {
   // Récupérer les valeurs du formulaire
   const title = titleInput.value;
   const description = descriptionInput.value;
   const image = imageInput.files[0];
-
   // Vérifier si les conditions sont remplies
   if (title && description && image) {
     // Créer un objet FormData pour envoyer les données du formulaire
@@ -165,7 +169,7 @@ form.addEventListener("submit", function (event) {
     // Afficher un message d'erreur si les conditions ne sont pas remplies
     console.error("Veuillez remplir tous les champs avant de soumettre le formulaire.");
   }
-});
+};
 
 // Evenement au clic de supprimer la galerie
 const btnDeleteGallery = document.querySelector(".delete-gallery");
