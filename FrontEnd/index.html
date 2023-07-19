@@ -14,7 +14,7 @@
 </head>
 <body>
 <header>
-	<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
+	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>
 		<ul>
 			<li>projets</li>
@@ -30,15 +30,7 @@
 			<img src="./assets/images/sophie-bluel.png" alt="">
 		</figure>
 		<article>
-			<!-- Bouton pour ouvrir la modale -->
-<button id="btnOpenModal"><i class="fa-regular fa-pen-to-square"></i><span id="Modif">modifier</span></button>
-
-<!-- Modale -->
-<div id="modal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <h2>Ajouter des médias dans la galerie</h2>
-    <!-- Contenu de la modale -->
+			
     
   </div>
 </div>
@@ -49,7 +41,71 @@
 		</article>
 	</section>
 	<section id="portfolio">
+		
 		<h2>Mes Projets</h2>
+		<!-- Bouton pour ouvrir la modale -->
+		
+
+<a href="#modal1"class="btnOpenModal"><i class="fa-regular fa-pen-to-square"></i><span id="Modif">modifier</span></a>
+
+<!-- Modale -->
+<div id="modal1" class="modal" display="flex" aria-hidden="true" role="dialog" aria-modal="false">
+  <div class="modal-content">
+    <span class="close"><i class="fa-solid fa-xmark"></i></span>
+    <h2>Galerie photo</h2>
+    <!-- Contenu de la modale -->
+	<div class="modal-container">
+		<figure>
+			<img src="assets/images/abajour-tahina.png" alt="Abajour Tahina">
+			<figcaption>éditer</figcaption>
+		</figure>
+		<figure>
+			<img src="assets/images/appartement-paris-v.png" alt="Appartement Paris V">
+			<figcaption>éditer</figcaption>
+		</figure>
+		<figure>
+			<img src="assets/images/restaurant-sushisen-londres.png" alt="Restaurant Sushisen - Londres">
+			<figcaption>éditer</figcaption>
+		</figure>
+		<figure>
+			<img src="assets/images/la-balisiere.png" alt="Villa “La Balisiere” - Port Louis">
+			<figcaption>éditer</figcaption>
+		</figure>
+		<figure>
+			<img src="assets/images/structures-thermopolis.png" alt="Structures Thermopolis">
+			<figcaption>éditer</figcaption>
+		</figure>
+		<figure>
+			<img src="assets/images/appartement-paris-x.png" alt="Appartement Paris X">
+			<figcaption>éditer</figcaption>
+		</figure>
+		<figure>
+			<img src="assets/images/le-coteau-cassis.png" alt="Pavillon “Le coteau” - Cassis">
+			<figcaption>éditer</figcaption>
+		</figure>
+		<figure>
+			<img src="assets/images/villa-ferneze.png" alt="Villa Ferneze - Isola d’Elba">
+			<figcaption>éditer</figcaption>
+		</figure>
+		<figure>
+			<img src="assets/images/appartement-paris-xviii.png" alt="Appartement Paris XVIII">
+			<figcaption>éditer</figcaption>
+		</figure>
+		<figure>
+			<img src="assets/images/bar-lullaby-paris.png" alt="Bar “Lullaby” - Paris">
+			<figcaption>éditer</figcaption>
+
+		</figure>
+		<figure>
+			<img src="assets/images/hotel-first-arte-new-delhi.png" alt="Hotel First Arte - New Delhi">
+			<figcaption>éditer</figcaption>
+		</figure>
+	</div>
+	<button>Ajouter une image</button></br>
+	<button>supprimer la gallerie</button>
+  </div>
+</div>
+
 		<div class="filterContainer"></div>
 		<div class="gallery">
 			
@@ -122,7 +178,6 @@
 	</nav>
 </footer>
 <script src="script.js"></script>
-
 <script src="modal.js"></script>
 </body>
 </html>

@@ -349,9 +349,10 @@ footer nav ul {
 }
 /* Styles pour la modale */
 .modal {
-  display: none;
+ display:flex;
+ 
   position: fixed;
-  z-index: 999;
+  
   top: 0;
   left: 0;
   width: 100%;
@@ -364,12 +365,31 @@ footer nav ul {
   background-color: #fff;
   margin: 10% auto;
   padding: 20px;
-  width: 80%;
-  max-width: 600px;
-}
+  border-radius: 10px;
+  width: 630px;
+  height: 731px;
 
-.close {
-  color: #aaa;
+}
+.modal-content .modal-container {
+  margin: 5px 65px 55px 65px;
+  display: flex;
+  flex-wrap:wrap;
+  border-bottom: 1px solid black;
+  
+  }
+.modal-content .modal-container figure {
+  
+  display:flex;
+  flex-direction: column;
+  flex-wrap:wrap;
+}
+.modal-content .modal-container img {
+  width:22%;
+  box-sizing:border-box;
+  padding : 10px 4px 10px 4px;
+}
+.modal .modal-content .close {
+  color: black;
   float: right;
   font-size: 28px;
   font-weight: bold;
@@ -383,6 +403,9 @@ footer nav ul {
   background-color: #fff;
   border: none;
   cursor: pointer;
+  position: relative;
+  top:10px;
+  left: 30px;
 }
 #btnOpenModal i {
   display: flex;
