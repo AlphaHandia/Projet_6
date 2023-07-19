@@ -37,11 +37,11 @@ function openModal() {
           const figure = deleteButton.closest("figure");
           const imageSrc = figure.querySelector("img").src;
           // Envoi de la requête de suppression de l'image
-          fetch("http://localhost:5678/api/works/${works.id}", {
+          fetch(`http://localhost:5678/api/works/${work.id}`, {
             method: "DELETE",
             headers: {
-              "Content-Type": "application/json",
-            },
+              'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY4OTc3NTM1NSwiZXhwIjoxNjg5ODYxNzU1fQ.qeP4-bJMNN4Gk9OrNU38d-iJ_o_yUROaLCmlGNu43-s'
+             }, 
             body: JSON.stringify({ imageUrl: imageSrc }),
           
           })
@@ -84,9 +84,9 @@ window.addEventListener("click", function (event) {
 });
 
 // Gestion de l'envoi du formulaire
-const form = document.createElement("form");
+const form = document.querySelector(".modalForm");
 form.id = "modalForm";
-
+form.enctype = "multipart/form-data";
 const titleInput = document.createElement("input");
 titleInput.id = "titleInput";
 titleInput.type = "text";
@@ -106,11 +106,21 @@ form.appendChild(imageInput);
 
 const submitButton = document.createElement("button");
 submitButton.type = "submit";
-submitButton.textContent = "Ajouter";
+submitButton.textContent = "Valider";
 form.appendChild(submitButton);
 
-modalContainer.appendChild(form);
+// Ajouter le formulaire à la modale
 
+
+// Événement clic sur l'input "Ajouter une photo"
+imageInput.addEventListener("click", function () {
+  
+});
+
+// Déclaration de la variable pour stocker l'ID
+let currentId = 1;
+
+// Événement de soumission du formulaire
 form.addEventListener("submit", function (event) {
   event.preventDefault(); // Empêche le rechargement de la page
 
@@ -119,33 +129,48 @@ form.addEventListener("submit", function (event) {
   const description = descriptionInput.value;
   const image = imageInput.files[0];
 
-  // Créer un objet FormData pour envoyer les données du formulaire
-  const formData = new FormData();
-  formData.append("title", title);
-  formData.append("description", description);
-  formData.append("image", image);
+  // Vérifier si les conditions sont remplies
+  if (title && description && image) {
+    // Créer un objet FormData pour envoyer les données du formulaire
+    const formData = new FormData();
+    formData.append("id", currentId); // Ajouter l'ID
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("image", image);
 
-  // Envoyer les données via fetch
-  fetch("http://localhost:5678/api/works", {
-    method: "POST",
-    body: formData,
-  })
-    .then(function (response) {
-      if (response.ok) {
-        // Le travail a été ajouté avec succès, actualiser la page pour afficher le nouveau travail
-        location.reload();
-      } else {
-        // Gérer les erreurs d'ajout
-        console.error("Erreur lors de l'ajout du travail");
-      }
+    // Envoyer les données via fetch
+    fetch("http://localhost:5678/api/works/", {
+      method: "POST",
+      headers: {
+        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY4OTc2NTE1MSwiZXhwIjoxNjg5ODUxNTUxfQ.e0LdgeM-OjhzqG8iIBXtkoghpmFlfzIDbJF33TaHfrg'
+       }, 
+      body: formData,
     })
-    .catch(function (error) {
-      console.error("Erreur lors de l'ajout du travail :", error);
-    });
+      .then(function (response) {
+        if (response.ok) {
+          // Le travail a été ajouté avec succès, actualiser la page pour afficher le nouveau travail
+          location.reload();
+        } else {
+          // Gérer les erreurs d'ajout
+          console.error("Erreur lors de l'ajout du travail");
+        }
+      })
+      .catch(function (error) {
+        console.error("Erreur lors de l'ajout du travail :", error);
+      });
+
+    // Incrémenter l'ID pour le prochain élément
+    currentId++;
+  } else {
+    // Afficher un message d'erreur si les conditions ne sont pas remplies
+    console.error("Veuillez remplir tous les champs avant de soumettre le formulaire.");
+  }
 });
-// Evenement au click de supprimer la gallerie//
+
+// Evenement au clic de supprimer la galerie
 const btnDeleteGallery = document.querySelector(".delete-gallery");
 btnDeleteGallery.addEventListener("click", deleteGallery);
-function deleteGallery(){
+
+function deleteGallery() {
   console.log("delete Gallery");
 }

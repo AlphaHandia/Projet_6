@@ -349,8 +349,8 @@ footer nav ul {
 }
 /* Styles pour la modale */
 .modal {
-  display:flex;
   
+  display: none;
    position: fixed;
    
    top: 0;
