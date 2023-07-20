@@ -8,6 +8,7 @@ const gallery = document.querySelector("#portfolio .gallery");
 // Fonction pour ouvrir la modale
 function openModal() {
   modal.style.display = "flex";
+  
   modalContainer.innerHTML = ""; // Effacer le contenu précédent de la modale
 
   // Récupérer les données des works depuis l'API
@@ -83,7 +84,11 @@ window.addEventListener("click", function (event) {
   }
 });
 function openForm (){
-modalContainer.innerHTML="";
+  const btnAddAndDelete = document.querySelector(".btn-add-and-delete")
+  btnAddAndDelete.innerHTML="";
+
+
+
 
   // Gestion de l'envoi du formulaire
   const form = document.querySelector(".modalForm");
@@ -91,22 +96,38 @@ modalContainer.innerHTML="";
 form.id = "modalForm";
 form.enctype = "multipart/form-data";
 
+let imageLabel = document.createElement("label");
+imageLabel.innerHTML="Ajout photo";
+imageLabel.classList = "imageLabel";
+form.appendChild(imageLabel);
+
 const imageInput = document.createElement("input");
 imageInput.id = "imageInput";
 imageInput.type = "file";
 form.appendChild(imageInput);
 
+let titleLabel = document.createElement("label");
+titleLabel.innerHTML="Titre";
+titleLabel.classList ="titleLabel";
+form.appendChild(titleLabel);
+
 const titleInput = document.createElement("input");
 titleInput.id = "titleInput";
 titleInput.type = "text";
-titleInput.placeholder = "Titre";
+titleInput.ariaLabel = "Titre";
+titleInput.classList ="Input";
 form.appendChild(titleInput);
 
-const descriptionInput = document.createElement("input");
-descriptionInput.id = "descriptionInput";
-descriptionInput.type = "text";
-descriptionInput.placeholder = "Description";
-form.appendChild(descriptionInput);
+let categorieLabel = document.createElement("label");
+categorieLabel.innerHTML="Description";
+categorieLabel.classList ="titleLabel";
+form.appendChild(categorieLabel);
+
+const categorieInput = document.createElement("input");
+categorieInput.id = "descriptionInput";
+categorieInput.type = "text";
+categorieInput.classList ="Input";
+form.appendChild(categorieInput);
 
 
 
@@ -121,6 +142,7 @@ let addPicture = document.querySelector(".add-picture")
 
 // Événement clic sur l'input "Ajouter une photo"
 addPicture.addEventListener("click", openForm);
+modalContainer.innerHTML="";
 
 // Déclaration de la variable pour stocker l'ID
 let currentId = 1;

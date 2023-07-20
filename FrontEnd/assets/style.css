@@ -468,7 +468,7 @@ margin-bottom:10px;
  .modal-content form {
   display: flex;
   flex-direction: column;
-  
+  align-items: center;
  }
 
  .modal-content form .delete-gallery {
@@ -476,4 +476,40 @@ margin-bottom:10px;
   color: red;
  background-color:#ffffff;
  }
- 
+ /*css ddu formulaire de l'ajout de photo*/
+
+.imageLabel {
+  color:black;
+  font-family: Work Sans;
+  font-weight:bold;
+  font-size:26px;
+  text-align: center;
+  margin: 20px 0px 40px 0px;
+}
+.titleLabel {
+  color:#3D3D3D;
+  font-family: Work Sans;
+  font-weight:bold;
+  font-size:14px;
+  text-align: left;
+  margin: 20px 0px 10px 0px;
+}
+.Input {
+  color:#FFFFFF;
+  width:420px;
+  height:51px;
+  box-shadow: 0px 4px 14px 0px #00000017;
+ border: none;
+}
+.submit-button {
+  width: 237px;
+  height:36px;
+  border-radius:60px;
+  background-color:#1D6154;
+  color:#FFFFFF;
+  font-family: Syne;
+  font-weight: 700 bold;
+  font-size:14px;
+  line-height:16.8px;
+  margin: 20px 0px 20px 0px;
+}
