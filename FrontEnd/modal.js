@@ -83,27 +83,49 @@ window.addEventListener("click", function (event) {
     closeModal();
   }
 });
-function openForm (){
+async function openForm (){
   const btnAddAndDelete = document.querySelector(".btn-add-and-delete")
   btnAddAndDelete.innerHTML="";
 
-
-
-
-  // Gestion de l'envoi du formulaire
+  
   const form = document.querySelector(".modalForm");
   form.addEventListener("submit", formValidate);
 form.id = "modalForm";
 form.enctype = "multipart/form-data";
+ 
+  // Gestion de l'envoi du formulaire
+  
+
+let formLabel = document.createElement("h2");
+formLabel.innerHTML = "Ajout photo" ;
+formLabel.classList = "formLabel";
+form.appendChild(formLabel);
+
+let iconImage = document.createElement("i");
+iconImage.className= "fa-regular fa-image fa-2xl";
+
+form.appendChild(iconImage);
+
+let backgroundLabel = document.createElement("label");
+backgroundLabel.innerText="";
+backgroundLabel.classList = "backgroundLabel";
+form.appendChild(backgroundLabel);
 
 let imageLabel = document.createElement("label");
-imageLabel.innerHTML="Ajout photo";
+imageLabel.innerText=" + Ajouter  photo";
 imageLabel.classList = "imageLabel";
 form.appendChild(imageLabel);
 
-const imageInput = document.createElement("input");
+let subtitleImageLabel = document.createElement("p")
+subtitleImageLabel.innerText="jpg,png : 4mo max";
+subtitleImageLabel.classList = "subtitleImageLabel";
+form.appendChild(subtitleImageLabel);
+
+let  imageInput = document.createElement("input");
 imageInput.id = "imageInput";
 imageInput.type = "file";
+
+imageInput.classList = "imageInput";
 form.appendChild(imageInput);
 
 let titleLabel = document.createElement("label");
@@ -118,16 +140,32 @@ titleInput.ariaLabel = "Titre";
 titleInput.classList ="Input";
 form.appendChild(titleInput);
 
-let categorieLabel = document.createElement("label");
-categorieLabel.innerHTML="Description";
-categorieLabel.classList ="titleLabel";
-form.appendChild(categorieLabel);
+const categoryLabel = document.createElement("label");
+  categoryLabel.innerHTML = "Catégorie";
+  categoryLabel.classList = "titleLabel";
+  form.appendChild(categoryLabel);
 
-const categorieInput = document.createElement("input");
-categorieInput.id = "descriptionInput";
-categorieInput.type = "text";
-categorieInput.classList ="Input";
-form.appendChild(categorieInput);
+  const categorySelect = document.createElement("select");
+  categorySelect.id = "categorySelect";
+  categorySelect.classList = "categorySelect";
+
+  // Récupérer les catégories depuis l'API
+  fetch("http://localhost:5678/api/categories")
+    .then((response) => response.json())
+    .then((categories) => {
+      // Générer les options du menu déroulant
+      categories.forEach((category) => {
+        const option = document.createElement("option");
+        option.value = category.id;
+        option.textContent = category.name;
+        categorySelect.appendChild(option);
+      });
+    })
+    .catch((error) => {
+      console.error("Erreur lors de la récupération des catégories depuis l'API :", error);
+    });
+
+  form.appendChild(categorySelect);
 
 
 
@@ -143,6 +181,7 @@ let addPicture = document.querySelector(".add-picture")
 // Événement clic sur l'input "Ajouter une photo"
 addPicture.addEventListener("click", openForm);
 modalContainer.innerHTML="";
+
 
 // Déclaration de la variable pour stocker l'ID
 let currentId = 1;

@@ -349,167 +349,237 @@ footer nav ul {
 }
 /* Styles pour la modale */
 .modal {
-  
   display: none;
-   position: fixed;
-   
-   top: 0;
-   left: 0;
-   width: 100%;
-   height: 100%;
-   overflow: auto;
-   background-color: rgba(0, 0, 0, 0.5);
- }
- 
- .modal-content {
-   background-color: #fff;
-   margin: 10% auto;
-   padding: 20px;
-   border-radius: 10px;
-   width: 630px;
-   height: 731px;
-   
- }
- .modal-content .modal-container {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 10px;
+  width: 630px;
+  height: 731px;
+}
+.modal-content .modal-container {
   padding: 5px 55px 15px 55px;
-   display: flex;
-   flex-wrap:wrap;
-   border-bottom: 1px solid black;
-   
-   }
- .modal-content .modal-container figure {
-  width: 20%;
-   display:flex;
-   flex-direction: column;
-   flex-wrap:wrap;
- }
- .modal-content .modal-container figure button {
-  left: 70px;
-    bottom: 145px;
-    position: relative;
-background: none;
-border:none;
-width: 22%;
- }
- .modal-content .modal-container figure button .fa-trash-can {
   display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 2px;
- }
- .modal-content .modal-container img {
-  width:100%;
-  box-sizing:border-box;
-  padding : 10px 4px 10px 4px;
- }
- .modal .modal-content .close {
-   color: black;
-   float: right;
-   font-size: 28px;
-   font-weight: bold;
-   cursor: pointer;
- }
- .modal .modal-content h2 {
-   font-family: Work Sans;
- font-size: 26px;
- font-weight: 400;
- line-height: 30px;
- letter-spacing: 0em;
- text-align: center;
- color: black;
- }
- .modal .modal-content .fa-trash-can {
-   color: #FFF;
-   background-color: black;
-   width: 17px;
-   height: 17px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid black;
+}
+.modal-content .modal-container figure {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.modal-content .modal-container figure button {
+  left: 70px;
+  bottom: 145px;
+  position: relative;
+  background: none;
+  border: none;
+  width: 22%;
+}
+.modal-content .modal-container figure button .fa-trash-can {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2px;
+}
+.modal-content .modal-container img {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 4px 10px 4px;
+}
+.modal .modal-content .close {
+  color: black;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
   cursor: pointer;
- }
- /* Styles pour le bouton */
- .myprojects {
-  display:flex;
+}
+.modal .modal-content h2 {
+  font-family: Work Sans;
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: black;
+}
+.modal .modal-content .fa-trash-can {
+  color: #fff;
+  background-color: black;
+  width: 17px;
+  height: 17px;
+  cursor: pointer;
+}
+/* Styles pour le bouton */
+.myprojects {
+  display: flex;
   justify-content: center;
   margin-bottom: 10px;
- }
- #portfolio  a {
+}
+#portfolio a {
   color: black;
-   display: flex;
-   gap: 10px;
-   background-color: #fff;
-   border: none;
-   cursor: pointer;
-   position: relative;
-   top:10px;
-   left: 30px;
-   text-decoration: none;
- }
- #portfolio  a i {
-   display: flex;
-   flex-direction: row;
-   justify-content: space-between;
- }
- #portfolio  a #Modif {
-   font-family: Work Sans;
-   font-weight: 400;
-   font-size: 14px;
-   line-height: 16.42px;
-   text-align: center;
- }
- .modal-content form input.add-picture {
+  display: flex;
+  gap: 10px;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  top: 10px;
+  left: 30px;
+  text-decoration: none;
+}
+#portfolio a i {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#portfolio a #Modif {
+  font-family: Work Sans;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16.42px;
+  text-align: center;
+}
+.modal-content form input.add-picture {
   width: 179px;
-  height:36px;
-border: none;
-display:flex;
-justify-content:center;
-margin-top:10px;
-margin-bottom:10px;
-
- }
- .modal-content form {
+  height: 36px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.modal-content form {
   display: flex;
   flex-direction: column;
   align-items: center;
- }
+}
 
- .modal-content form .delete-gallery {
+.modal-content form .delete-gallery {
   border: none;
   color: red;
- background-color:#ffffff;
- }
- /*css ddu formulaire de l'ajout de photo*/
+  background-color: #ffffff;
+}
+/*css ddu formulaire de l'ajout de photo*/
 
 .imageLabel {
-  color:black;
+  color: black;
   font-family: Work Sans;
-  font-weight:bold;
-  font-size:26px;
+  font-weight: bold;
+  font-size: 26px;
   text-align: center;
   margin: 20px 0px 40px 0px;
 }
 .titleLabel {
-  color:#3D3D3D;
+  color: #3d3d3d;
   font-family: Work Sans;
-  font-weight:bold;
-  font-size:14px;
+  font-weight: bold;
+  font-size: 14px;
   text-align: left;
   margin: 20px 0px 10px 0px;
 }
 .Input {
-  color:#FFFFFF;
-  width:420px;
-  height:51px;
+  color: #ffffff;
+  width: 420px;
+  height: 51px;
   box-shadow: 0px 4px 14px 0px #00000017;
- border: none;
+  border: none;
 }
 .submit-button {
   width: 237px;
-  height:36px;
-  border-radius:60px;
-  background-color:#1D6154;
-  color:#FFFFFF;
+  height: 36px;
+  border-radius: 60px;
+  background-color: #1d6154;
+  color: #ffffff;
   font-family: Syne;
   font-weight: 700 bold;
-  font-size:14px;
-  line-height:16.8px;
+  font-size: 14px;
+  line-height: 16.8px;
   margin: 20px 0px 20px 0px;
+}
+.imageInput {
+  width: 420px;
+  height: 169px;
+  border-radius: 3px;
+  background-color: #e8f1f6;
+  cursor: pointer;
+  opacity: 0;
+  z-index: 5;
+  margin-top: -155px;
+}
+.imageLabel {
+  cursor: pointer;
+  width: 173px;
+  height: 36px;
+  border-radius: 50px;
+  background-color: #cbd6dc;
+  color: #306685;
+
+  z-index: 5;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  font-family: Work Sans;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: center;
+  align-items: center;
+  position: relative;
+  top: 35px;
+}
+.subtitleImageLabel {
+  color: #444444;
+  position: relative;
+
+  z-index: 5;
+}
+.backgroundLabel {
+  width: 420px;
+  height: 169px;
+  border-radius: 3px;
+  background-color: #e8f1f6;
+  cursor: pointer;
+  z-index: 5;
+  margin-bottom: -125px;
+}
+.fa-image:before {
+  position: relative;
+  display: inline-flex;
+  z-index: 6;
+  font-size: 58px;
+  height: 58px;
+  bottom: -100px;
+  color: #b9c5cc;
+}
+.modalForm {
+  display: flex;
+  flex-wrap: wrap; /* Permet aux éléments de s'enrouler à la ligne suivante */
+}
+
+.titleLabel {
+  display: block; /* Pour occuper une ligne complète */
+  margin-right: 10px; /* Espacement entre les éléments de catégorie */
+}
+
+.categorySelect {
+  width: 420px;
+  height: 51px;
+  box-shadow: 0px 4px 14px 0px #00000017;
+  background-color: #ffffff; /* Fond transparent */
+  border: "none";
+  padding: 5px; /* Espacement interne */
 }
