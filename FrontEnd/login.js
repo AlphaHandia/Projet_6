@@ -13,7 +13,7 @@ form.addEventListener('submit', function(event) {
   const password = document.querySelector('#password').value;
 
   // Envoi des données d'authentification
-  fetch('http://localhost:5678/api/users/login/', {
+  fetch('http://localhost:5678/api/users/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -22,12 +22,19 @@ form.addEventListener('submit', function(event) {
   })
     .then(response => {
       if (response.ok) {
-        // Authentification réussie, rediriger vers la page d'accueil
-        window.location.href = './index.html';
+        // Authentification réussie, récupérer le token et le stocker dans localStorage
+        return response.json(); // Utilisez response.json() pour extraire les données
       } else {
-        // Combinaison email/mot de passe incorrecte, afficher un message d'erreur
-        alert('Identifiants incorrects');
+        throw new Error('Identifiants incorrects'); // Lève une erreur pour être capturée par le bloc catch
       }
+    })
+    .then(data => {
+      let token = "";
+      window.sessionStorage.token = data.token;
+      window.localStorage.setItem("token", token);
+      console.log(data.token);
+      data.token.export;
+      location.assign("index.html");
     })
     .catch(error => {
       console.error('Erreur lors de la connexion :', error);

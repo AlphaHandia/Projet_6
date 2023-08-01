@@ -1,14 +1,13 @@
-// Sélection des éléments du DOM
+let token = window.sessionStorage.token;
 const modal = document.querySelector("#modal1");
 const btnOpenModal = document.querySelector(".btnOpenModal");
 const btncloseModal = document.querySelector(".close");
 const modalContainer = document.querySelector(".modal-container");
-const gallery = document.querySelector("#portfolio .gallery");
 
 // Fonction pour ouvrir la modale
 function openModal() {
   modal.style.display = "flex";
-  
+
   modalContainer.innerHTML = ""; // Effacer le contenu précédent de la modale
 
   // Récupérer les données des works depuis l'API
@@ -38,17 +37,19 @@ function openModal() {
           const figure = deleteButton.closest("figure");
           const imageSrc = figure.querySelector("img").src;
           // Envoi de la requête de suppression de l'image
-          fetch(`http://localhost:5678/api/works/${work.id}`, {
+          fetch(`http://localhost:5678/api/works/${work.id}/`, {
             method: "DELETE",
             headers: {
-              'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY4OTc3NTM1NSwiZXhwIjoxNjg5ODYxNzU1fQ.qeP4-bJMNN4Gk9OrNU38d-iJ_o_yUROaLCmlGNu43-s'
-             }, 
+              Authorization: `Bearer ${window.sessionStorage.token} `,
+              "Content-Type": "application/json",
+            },
             body: JSON.stringify({ imageUrl: imageSrc }),
-          
           })
             .then(function (response) {
-              if (response.ok) {
+              if (window.sessionStorage.token && response.ok) {
                 // Le travail a été supprimé avec succès, retirez-le du DOM
+                console.log(token);
+                console.log("ok pour destruction");
                 figure.remove();
               } else {
                 // Gérer les erreurs de suppression
@@ -56,19 +57,26 @@ function openModal() {
               }
             })
             .catch(function (error) {
-              console.error("Erreur lors de la suppression du travail :", error);
+              console.error(
+                "Erreur lors de la suppression du travail :",
+                error
+              );
             });
         });
       });
     })
     .catch((error) => {
-      console.error("Erreur lors de la récupération des works depuis l'API :", error);
+      console.error(
+        "Erreur lors de la récupération des works depuis l'API :",
+        error
+      );
     });
 }
 
 // Événement clic sur le bouton pour ouvrir la modale
 btnOpenModal.addEventListener("click", openModal);
 
+let modalContentForm = document.querySelector(".modal-content form");
 // Fonction pour fermer la modale
 function closeModal() {
   modal.style.display = "none";
@@ -83,64 +91,120 @@ window.addEventListener("click", function (event) {
     closeModal();
   }
 });
-async function openForm (){
-  const btnAddAndDelete = document.querySelector(".btn-add-and-delete")
-  btnAddAndDelete.innerHTML="";
 
-  
+async function openForm() {
+  const btnAddAndDelete = document.querySelector(".btn-add-and-delete");
+  btnAddAndDelete.style.display = "none";
+
   const form = document.querySelector(".modalForm");
-  form.addEventListener("submit", formValidate);
-form.id = "modalForm";
-form.enctype = "multipart/form-data";
- 
-  // Gestion de l'envoi du formulaire
+
+  form.id = "modalForm";
+  form.enctype = "multipart/form-data";
   
 
-let formLabel = document.createElement("h2");
-formLabel.innerHTML = "Ajout photo" ;
-formLabel.classList = "formLabel";
-form.appendChild(formLabel);
+  let iconArrow = document.createElement("i");
+  iconArrow.className = "fa-solid fa-arrow-left";
+  form.appendChild(iconArrow);
+  iconArrow.addEventListener("click", closeForm);
 
-let iconImage = document.createElement("i");
-iconImage.className= "fa-regular fa-image fa-2xl";
+  function closeForm() {
+ 
+    form.innerHTML="";
+      btnAddAndDelete.style.display ="flex";
+    modalContainer.style.display = "flex";
+     }
 
-form.appendChild(iconImage);
+  let formLabel = document.createElement("h2");
+  formLabel.innerHTML = "Ajout photo";
+  formLabel.classList = "formLabel";
+  form.appendChild(formLabel);
 
-let backgroundLabel = document.createElement("label");
-backgroundLabel.innerText="";
-backgroundLabel.classList = "backgroundLabel";
-form.appendChild(backgroundLabel);
+  let iconImage = document.createElement("i");
+  iconImage.className = "fa-regular fa-image fa-2xl";
 
-let imageLabel = document.createElement("label");
-imageLabel.innerText=" + Ajouter  photo";
-imageLabel.classList = "imageLabel";
-form.appendChild(imageLabel);
+  form.appendChild(iconImage);
 
-let subtitleImageLabel = document.createElement("p")
-subtitleImageLabel.innerText="jpg,png : 4mo max";
-subtitleImageLabel.classList = "subtitleImageLabel";
-form.appendChild(subtitleImageLabel);
+  let backgroundLabel = document.createElement("label");
+  backgroundLabel.innerText = "";
+  backgroundLabel.classList = "backgroundLabel";
+  form.appendChild(backgroundLabel);
 
-let  imageInput = document.createElement("input");
-imageInput.id = "imageInput";
-imageInput.type = "file";
+  let imageLabel = document.createElement("label");
+  imageLabel.innerText = " + Ajouter  photo";
+  imageLabel.classList = "imageLabel";
+  form.appendChild(imageLabel);
 
-imageInput.classList = "imageInput";
-form.appendChild(imageInput);
+  let subtitleImageLabel = document.createElement("p");
+  subtitleImageLabel.innerText = "jpg,png : 4mo max";
+  subtitleImageLabel.classList = "subtitleImageLabel";
+  form.appendChild(subtitleImageLabel);
 
-let titleLabel = document.createElement("label");
-titleLabel.innerHTML="Titre";
-titleLabel.classList ="titleLabel";
-form.appendChild(titleLabel);
+  let imageInput = document.createElement("input");
+  imageInput.id = "imageInput";
+  imageInput.type = "file";
+  imageInput.accept = "image/jpeg, image/png"; // Définir les types de fichiers acceptés
+  imageInput.classList = "imageInput";
+  form.appendChild(imageInput);
 
-const titleInput = document.createElement("input");
-titleInput.id = "titleInput";
-titleInput.type = "text";
-titleInput.ariaLabel = "Titre";
-titleInput.classList ="Input";
-form.appendChild(titleInput);
+  const previewImage = document.createElement("img");
+previewImage.id = "previewImage";
+previewImage.src = ""; // L'image source sera définie lorsque l'utilisateur sélectionne un fichier
+previewImage.classList = "preview-image";
+previewImage.style.width ="420px";
+previewImage.style.height ="169px";
+previewImage.style.objectFit = "cover";
+previewImage.style.position ="relative";
+previewImage.style.bottom = "100px";
+form.appendChild(previewImage);
+imageInput.addEventListener("change", function () {
+  const selectedFile = imageInput.files[0]; // Récupérer le fichier sélectionné
 
-const categoryLabel = document.createElement("label");
+  if (selectedFile) {
+    // Créer un objet FileReader pour lire le contenu de l'image sélectionnée
+    const reader = new FileReader();
+
+    // Définir le gestionnaire d'événements onload pour l'objet FileReader
+    reader.onload = function (event) {
+      // Mettre à jour l'aperçu de l'image avec le contenu lu
+      previewImage.src = event.target.result;
+    };
+
+    // Lire le contenu de l'image en tant que données URL (base64)
+    reader.readAsDataURL(selectedFile);
+  } else {
+    // Si aucun fichier n'est sélectionné, effacer l'aperçu de l'image
+    previewImage.src = "";
+  }
+});
+
+  // Gestionnaire d'événements pour l'élément input de type "file"
+  imageInput.addEventListener("change", function () {
+    const selectedFile = imageInput.files[0]; // Récupérer le fichier sélectionné
+
+    if (selectedFile && selectedFile.size > 4 * 1024 * 1024) {
+      // Vérifier la taille du fichier (4 Mo)
+      // Afficher un message d'erreur à l'utilisateur
+      alert("La taille du fichier ne doit pas dépasser 4 Mo.");
+
+      // Réinitialiser l'élément input pour permettre à l'utilisateur de sélectionner un autre fichier
+      imageInput.value = "";
+    }
+  });
+
+  let titleLabel = document.createElement("label");
+  titleLabel.innerHTML = "Titre";
+  titleLabel.classList = "titleLabel";
+  form.appendChild(titleLabel);
+
+  const titleInput = document.createElement("input");
+  titleInput.id = "titleInput";
+  titleInput.type = "text";
+  titleInput.ariaLabel = "Titre";
+  titleInput.classList = "Input";
+  titleInput.classList ="Input", "black-text";
+  form.appendChild(titleInput);
+
+  const categoryLabel = document.createElement("label");
   categoryLabel.innerHTML = "Catégorie";
   categoryLabel.classList = "titleLabel";
   form.appendChild(categoryLabel);
@@ -162,58 +226,62 @@ const categoryLabel = document.createElement("label");
       });
     })
     .catch((error) => {
-      console.error("Erreur lors de la récupération des catégories depuis l'API :", error);
+      console.error(
+        "Erreur lors de la récupération des catégories depuis l'API :",
+        error
+      );
     });
 
   form.appendChild(categorySelect);
 
+  const submitButton = document.createElement("button");
+  submitButton.type = "submit";
+  submitButton.textContent = "Valider";
+  submitButton.classList = "submit-button";
+  form.appendChild(submitButton);
+  submitButton.addEventListener("click", formValidate);
 
-
-const submitButton = document.createElement("button");
-submitButton.type = "submit";
-submitButton.textContent = "Valider";
-submitButton.classList = "submit-button"
-form.appendChild(submitButton);
+  
 
 }
-let addPicture = document.querySelector(".add-picture")
+
+
+
+let addPicture = document.querySelector(".add-picture");
 
 // Événement clic sur l'input "Ajouter une photo"
 addPicture.addEventListener("click", openForm);
-modalContainer.innerHTML="";
-
 
 // Déclaration de la variable pour stocker l'ID
 let currentId = 1;
 
-
-
-  
-function formValidate () {
+function formValidate() {
   // Récupérer les valeurs du formulaire
   const title = titleInput.value;
-  const description = descriptionInput.value;
+  const category = categorySelect.value;
   const image = imageInput.files[0];
+
   // Vérifier si les conditions sont remplies
-  if (title && description && image) {
+  if (title && category && image) {
     // Créer un objet FormData pour envoyer les données du formulaire
     const formData = new FormData();
     formData.append("id", currentId); // Ajouter l'ID
-    formData.append("title", title);
-    formData.append("description", description);
     formData.append("image", image);
+    formData.append("title", title);
+    formData.append("category", category); // Correction : "categorie" -> "category"
 
     // Envoyer les données via fetch
-    fetch("http://localhost:5678/api/works/", {
+    fetch("http://localhost:5678/api/works", {
       method: "POST",
       headers: {
-        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY4OTc2NTE1MSwiZXhwIjoxNjg5ODUxNTUxfQ.e0LdgeM-OjhzqG8iIBXtkoghpmFlfzIDbJF33TaHfrg'
-       }, 
+        Authorization: `Bearer ${window.sessionStorage.token}`,
+      },
       body: formData,
     })
       .then(function (response) {
-        if (response.ok) {
+        if (window.sessionStorage.token && response.status === 201) {
           // Le travail a été ajouté avec succès, actualiser la page pour afficher le nouveau travail
+          console.log("ok pour validation");
           location.reload();
         } else {
           // Gérer les erreurs d'ajout
@@ -228,9 +296,11 @@ function formValidate () {
     currentId++;
   } else {
     // Afficher un message d'erreur si les conditions ne sont pas remplies
-    console.error("Veuillez remplir tous les champs avant de soumettre le formulaire.");
+    console.error(
+      "Veuillez remplir tous les champs avant de soumettre le formulaire."
+    );
   }
-};
+}
 
 // Evenement au clic de supprimer la galerie
 const btnDeleteGallery = document.querySelector(".delete-gallery");

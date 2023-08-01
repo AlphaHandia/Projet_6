@@ -452,7 +452,7 @@ footer nav ul {
   line-height: 16.42px;
   text-align: center;
 }
-.modal-content form input.add-picture {
+.add-picture {
   width: 179px;
   height: 36px;
   border: none;
@@ -467,10 +467,12 @@ footer nav ul {
   align-items: center;
 }
 
-.modal-content form .delete-gallery {
+.delete-gallery {
   border: none;
   color: red;
   background-color: #ffffff;
+  position: relative;
+  left: 250px;
 }
 /*css ddu formulaire de l'ajout de photo*/
 
@@ -491,7 +493,7 @@ footer nav ul {
   margin: 20px 0px 10px 0px;
 }
 .Input {
-  color: #ffffff;
+  color: black;
   width: 420px;
   height: 51px;
   box-shadow: 0px 4px 14px 0px #00000017;
@@ -548,6 +550,7 @@ footer nav ul {
   z-index: 5;
 }
 .backgroundLabel {
+  
   width: 420px;
   height: 169px;
   border-radius: 3px;
@@ -567,19 +570,48 @@ footer nav ul {
 }
 .modalForm {
   display: flex;
-  flex-wrap: wrap; /* Permet aux éléments de s'enrouler à la ligne suivante */
+  flex-wrap: wrap; 
 }
 
 .titleLabel {
-  display: block; /* Pour occuper une ligne complète */
-  margin-right: 10px; /* Espacement entre les éléments de catégorie */
+  display: block;
+  margin-right: 10px; 
 }
 
 .categorySelect {
   width: 420px;
   height: 51px;
   box-shadow: 0px 4px 14px 0px #00000017;
-  background-color: #ffffff; /* Fond transparent */
-  border: "none";
-  padding: 5px; /* Espacement interne */
+  background-color: #ffffff; 
+  border: none;
+  padding: 5px; 
 }
+.fa-arrow-left {
+  position: relative;
+ right : 270px;
+ top: 10px;
+  font-size: 21px;
+  font-height: 21px;
+  z-index: 10;
+}
+
+.boutonArrow {
+  position: relative;
+ right : 270px;
+ top: 10px;
+  font-size: 21px;
+  font-height: 21px;
+  opacity: 0;
+  z-index: 6;
+}
+.preview-image{
+  width: 420px;
+  height: 169px;
+}
+
+
+
+
+
+
+
