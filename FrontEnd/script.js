@@ -4,13 +4,13 @@ let allProjects = []; // Variable pour stocker tous les projets
 
 // Fonction pour afficher les filtres
 function displayFilters(categories) {
-  // Créer le bouton "Tout" pour afficher tous les projets
+  // Création du bouton "Tout" pour afficher tous les projets
   const allButton = document.createElement("button");
   allButton.textContent = "Tout";
-  allButton.classList.add("filterContainer-selected"); // Ajouter la classe CSS par défaut
+  allButton.classList.add("filterContainer-selected"); // Ajout de la classe CSS par défaut
   allButton.addEventListener("click", function () {
-    displayProjects(allProjects); // Afficher tous les projets
-    // Mettre à jour la classe CSS des boutons
+    displayProjects(allProjects); // Affichage de tous les projets
+    //mise à jour de la classe CSS des boutons
     updateButtonClass(allButton);
   });
   filterContainer.appendChild(allButton);
@@ -26,7 +26,7 @@ function displayFilters(categories) {
         (project) => project.categoryId === category.id
       );
       displayProjects(filteredProjects);
-      // Mettre à jour la classe CSS des boutons
+
       updateButtonClass(button);
     });
 
@@ -70,33 +70,33 @@ function updateButtonClass(selectedButton) {
 fetch("http://localhost:5678/api/categories/")
   .then((response) => response.json())
   .then((categories) => {
-    displayFilters(categories); // Afficher les filtres
+    displayFilters(categories); // Afficher les filtres par nom de categories
   })
   .catch((error) => {
     console.error("Erreur lors de la récupération des catégories :", error);
   });
 
-// Récupérer tous les projets depuis l'API
+// Récupération de tous les projets depuis l'API
 
 fetch("http://localhost:5678/api/works/")
   .then((response) => response.json())
   .then((projects) => {
-    allProjects = projects; // Stocker tous les projets
-    displayProjects(projects); // Afficher tous les projets initialement
+    allProjects = projects; // Stockage de tous les projets
+    displayProjects(projects); // Affichage de tous les projets initialement
   })
   .catch((error) => {
     console.error("Erreur lors de la récupération des travaux :", error);
   });
-  async function getUpdatedProjects() {
-    try {
-      const response = await fetch("http://localhost:5678/api/works/");
-      if (!response.ok) {
-        throw new Error("Erreur lors de la récupération des travaux");
-      }
-      const projects = await response.json();
-      allProjects = projects;
-      displayProjects(projects); // Afficher les projets mis à jour dans la galerie
-    } catch (error) {
-      console.error("Erreur lors de la récupération des travaux :", error);
+async function getUpdatedProjects() {
+  try {
+    const response = await fetch("http://localhost:5678/api/works/");
+    if (!response.ok) {
+      throw new Error("Erreur lors de la récupération des travaux");
     }
+    const projects = await response.json();
+    allProjects = projects;
+    displayProjects(projects); // Affichage des projets mis à jour dans la galerie
+  } catch (error) {
+    console.error("Erreur lors de la récupération des travaux :", error);
   }
+}
