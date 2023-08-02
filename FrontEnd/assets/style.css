@@ -2,7 +2,10 @@
    v2.0 | 20110126
    License: none (public domain)
 */
+body {
+  background: #FFFEF8;
 
+}
 html,
 body,
 div,
@@ -90,7 +93,7 @@ video {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
-} 
+}
 /* HTML5 display-role reset for older browsers */
 article,
 aside,
@@ -104,44 +107,44 @@ menu,
 nav,
 section {
   display: block;
-} 
+}
 body {
   line-height: 1;
-} 
+}
 ol,
 ul {
   list-style: none;
-} 
+}
 blockquote,
 q {
   quotes: none;
-} 
+}
 blockquote:before,
 blockquote:after,
 q:before,
 q:after {
   content: "";
   content: none;
-} 
+}
 table {
   border-collapse: collapse;
   border-spacing: 0;
-} 
+}
 /** end reset css**/
 body {
   max-width: 1140px;
   margin: auto;
   font-family: "Work Sans";
   font-size: 14px;
-} 
+}
 header {
   display: flex;
   justify-content: space-between;
   margin: 0 0 50px 0;
-} 
+}
 section {
   margin: 50px 0;
-} 
+}
 h1 {
   display: flex;
   flex-direction: column;
@@ -149,72 +152,72 @@ h1 {
   font-size: 22px;
   font-weight: 800;
   color: #b1663c;
-} 
+}
 
 h1 > span {
   font-family: "Work Sans";
   font-size: 10px;
   letter-spacing: 0.1em;
-} 
+}
 
 h2 {
   font-family: "Syne";
   font-weight: 700;
   font-size: 30px;
   color: #1d6154;
-} 
+}
 nav ul {
   display: flex;
   align-items: center;
   list-style-type: none;
-} 
+}
 nav li {
   padding: 0 10px;
   font-size: 1.2em;
-} 
+}
 li:hover {
   color: #b1663c;
-} 
+}
 #login-css {
   text-decoration: none;
   color: black;
-} 
+}
 #index-css {
   text-decoration: none;
-} 
+}
 #introduction {
   display: flex;
   align-items: center;
-} 
+}
 #introduction figure {
   flex: 1;
-} 
+}
 #introduction img {
   display: block;
   margin: auto;
   width: 80%;
-} 
+}
 #introduction article {
   flex: 1;
-} 
+}
 #introduction h2 {
   margin-bottom: 1em;
-} 
+}
 
 #introduction p {
   margin-bottom: 0.5em;
-} 
+}
 #portfolio h2 {
   text-align: center;
   margin-bottom: 1em;
-} 
+}
 .gallery {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-column-gap: 20px;
   grid-row-gap: 20px;
-} 
+}
 .filterContainer {
   display: flex;
   flex-direction: row;
@@ -223,7 +226,7 @@ li:hover {
   margin-bottom: 51px;
   height: 37px;
   width: auto;
-} 
+}
 .filterContainer button {
   font-family: "Syne";
   font-style: normal;
@@ -240,91 +243,94 @@ li:hover {
   min-width: 100px;
   width: auto;
   cursor: pointer;
-} 
+}
 .filterContainer button.filterContainer-selected {
   color: #ffffff;
   background-color: #1d6154;
-} 
+}
 .gallery img {
   width: 100%;
-} 
+}
 #contact {
   width: 50%;
   margin: auto;
-} 
+}
 #contact > * {
   text-align: center;
-} 
+}
 #contact h2 {
   margin-bottom: 20px;
-} 
+}
 #contact form {
   text-align: left;
   margin-top: 30px;
   display: flex;
   flex-direction: column;
-} 
+}
 #contact input {
   height: 50px;
   font-size: 1.2em;
   border: none;
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-} 
+}
 #contact label {
   margin: 2em 0 1em 0;
-} 
+}
 #contact textarea {
   border: none;
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-} 
+}
 .Second {
   width: 1440px;
-} 
+}
 .Second-header {
   width: 1140px;
   margin-bottom: 182px;
-} 
+  margin-top: 20px;
+  
+
+}
 .Second-footer {
   margin-top: 435px;
-} 
+}
 #login {
   max-width: 1140px;
   width: 35%;
   margin: auto;
-} 
+}
 #login > * {
   text-align: center;
-} 
+}
 #login h2 {
   margin-bottom: 20px;
-} 
+}
 #login form {
   text-align: left;
   margin-top: 30px;
   display: flex;
   flex-direction: column;
-} 
+}
 #login-li {
   font-weight: bold;
-} 
+}
 #login input {
   height: 50px;
   font-size: 1.2em;
   border: none;
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-} 
+}
 #login label {
   margin: 2em 0 1em 0;
-} 
+}
 #login textarea {
   border: none;
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-} 
+}
 #login-form a {
   display: block;
   text-align: center;
   color: black;
-} 
+}
 input[type="submit"] {
   font-family: "Syne";
   font-weight: 700;
@@ -334,12 +340,12 @@ input[type="submit"] {
   width: 180px;
   text-align: center;
   border-radius: 60px;
-} 
+}
 footer nav ul {
   display: flex;
   justify-content: flex-end;
   margin: 2em;
-} 
+}
 /* Styles pour la modale */
 .modal {
   display: none;
@@ -350,7 +356,7 @@ footer nav ul {
   height: 100%;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.5);
-} 
+}
 .modal-content {
   background-color: #fff;
   margin: 10% auto;
@@ -358,45 +364,46 @@ footer nav ul {
   border-radius: 10px;
   width: 630px;
   height: 731px;
-} 
+}
 .modal-content .modal-container {
   padding: 5px 55px 15px 55px;
   display: flex;
   flex-wrap: wrap;
   border-bottom: 1px solid black;
-} 
+}
 .modal-content .modal-container figure {
   width: 20%;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-} 
-.modal-content .modal-container figure button {
-  left: 70px;
-  bottom: 145px;
   position: relative;
+  flex-wrap: wrap;
+}
+.modal-content .modal-container figure button {
+  right: 15px;
+  top: 15px;
+  position: absolute;
   background: none;
   border: none;
   width: 22%;
-} 
+}
 .modal-content .modal-container figure button .fa-trash-can {
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 2px;
-} 
+}
 .modal-content .modal-container img {
   width: 100%;
   box-sizing: border-box;
   padding: 10px 4px 10px 4px;
-} 
+}
 .modal .modal-content .close {
   color: black;
   float: right;
   font-size: 28px;
   font-weight: bold;
   cursor: pointer;
-} 
+}
 .modal .modal-content h2 {
   font-family: Work Sans;
   font-size: 26px;
@@ -407,21 +414,21 @@ footer nav ul {
   color: black;
   position: relative;
   top: 20px;
-} 
+}
 .modal .modal-content .fa-trash-can {
   color: #fff;
   background-color: black;
   width: 17px;
   height: 17px;
   cursor: pointer;
-} 
+}
 /* Styles pour le bouton */
 .myprojects {
   display: flex;
   justify-content: center;
   margin-bottom: 30px;
-  margin-top: 200px;
-} 
+  margin-top: 130px;
+}
 .btnOpenModal {
   color: black;
   display: none;
@@ -433,19 +440,19 @@ footer nav ul {
   top: 10px;
   left: 30px;
   text-decoration: none;
-} 
+}
 #portfolio a i {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-} 
+}
 #portfolio a #Modif {
   font-family: Work Sans;
   font-weight: 400;
   font-size: 14px;
   line-height: 16.42px;
   text-align: center;
-} 
+}
 .add-picture {
   width: 179px;
   height: 36px;
@@ -455,17 +462,17 @@ footer nav ul {
   margin-top: 10px;
   margin-bottom: 10px;
   cursor: pointer;
-} 
+}
 .modal-content form {
   display: flex;
   flex-direction: column;
   align-items: center;
-} 
+}
 .delete-gallery {
   border: none;
   color: red;
   background-color: #ffffff;
-} 
+}
 /*css ddu formulaire de l'ajout de photo*/
 .imageLabel {
   color: black;
@@ -474,28 +481,28 @@ footer nav ul {
   font-size: 26px;
   text-align: center;
   margin: 20px 0px 40px 0px;
-} 
+}
 .titleLabel {
   color: #3d3d3d;
   font-family: Work Sans;
   font-weight: bold;
   font-size: 14px;
   margin: 20px 430px 10px 0px;
-} 
+}
 .titleLabelCategory {
   color: #3d3d3d;
   font-family: Work Sans;
   font-weight: bold;
   font-size: 14px;
   margin: 20px 400px 10px 0px;
-} 
+}
 .Input {
   color: black;
   width: 420px;
   height: 51px;
   box-shadow: 0px 4px 14px 0px #00000017;
   border: none;
-} 
+}
 .submit-button {
   width: 237px;
   height: 36px;
@@ -508,7 +515,7 @@ footer nav ul {
   font-size: 14px;
   line-height: 16.8px;
   margin: 20px 0px 20px 0px;
-} 
+}
 .imageInput {
   width: 420px;
   height: 169px;
@@ -518,7 +525,7 @@ footer nav ul {
   opacity: 0;
   z-index: 5;
   margin-top: -155px;
-} 
+}
 .imageLabel {
   cursor: pointer;
   width: 173px;
@@ -539,12 +546,12 @@ footer nav ul {
   align-items: center;
   position: relative;
   top: 35px;
-} 
+}
 .subtitleImageLabel {
   color: #444444;
   position: relative;
   z-index: 5;
-} 
+}
 .backgroundLabel {
   width: 420px;
   height: 169px;
@@ -553,7 +560,7 @@ footer nav ul {
   cursor: pointer;
   z-index: 5;
   margin-bottom: -125px;
-} 
+}
 .fa-image:before {
   position: relative;
   display: inline-flex;
@@ -562,16 +569,16 @@ footer nav ul {
   height: 58px;
   bottom: -100px;
   color: #b9c5cc;
-} 
+}
 .modalForm {
   display: flex;
   flex-wrap: wrap;
-} 
+}
 .lineform {
   width: 420px;
   border-bottom: 1px solid #b3b3b3;
   margin-bottom: 25px;
-} 
+}
 
 .categorySelect {
   width: 420px;
@@ -581,7 +588,7 @@ footer nav ul {
   border: none;
   padding: 5px 0px 5px 0px;
   margin-bottom: 25px;
-} 
+}
 .fa-arrow-left {
   position: relative;
   right: 270px;
@@ -589,7 +596,7 @@ footer nav ul {
   font-size: 21px;
   height: 21px;
   z-index: 10;
-} 
+}
 
 .boutonArrow {
   position: relative;
@@ -599,7 +606,7 @@ footer nav ul {
   height: 21px;
   opacity: 0;
   z-index: 6;
-} 
+}
 .modal-content .modalForm .preview-image {
   width: 420px;
   height: 169px;
@@ -613,21 +620,24 @@ footer nav ul {
   background-color: #ffffff;
   visibility: hidden;
   border-image: none;
-} 
+}
 .disabled {
   background-color: #1d6154;
-} 
+
+  cursor: pointer;
+}
+
 .closeForm {
   display: flex;
   flex-direction: column;
   justify-content: center;
   height: 730px;
-} 
+}
 #error-message {
   display: none;
   font-family: Syne;
   color: red;
-} 
+}
 .btnOpenFirstPicture {
   color: black;
   display: none;
@@ -637,7 +647,7 @@ footer nav ul {
   margin-top: 10px;
   gap: 10px;
   text-decoration: none;
-} 
+}
 
 .bannerBlack {
   background-color: black;
@@ -648,13 +658,13 @@ footer nav ul {
   gap: 25px;
   align-items: center;
   padding: 5px;
-} 
+}
 .bannerBlack a {
   color: #ffffff;
   text-decoration: none;
   display: flex;
   gap: 10px;
-} 
+}
 .bannerBlack button {
   height: 38px;
   border-radius: 25px;
@@ -667,19 +677,22 @@ footer nav ul {
   padding: 5px;
   width: 216px;
   cursor: not-allowed;
-} 
+}
 .positionBanner {
   display: Flex;
   flex-direction: column;
   width: 100%;
-} 
+}
 .nav {
   display: flex;
   justify-content: space-between;
   gap: 25px;
   align-items: center;
   margin: 25px 30px 5px 30px;
-} 
+}
 .modal0 {
   text-align: center;
-} 
+  overflow: scroll;
+  box-sizing: border-box;
+  max-height: 731px;
+}

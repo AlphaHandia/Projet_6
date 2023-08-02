@@ -15,11 +15,13 @@ function checkAuthentication() {
   const hiddenBanner = document.querySelector(".bannerBlack");
   const hiddenbtnFirstPicture = document.querySelector(".btnOpenFirstPicture");
   const hiddenbtnModal = document.querySelector(".btnOpenModal");
+  const logout = document.querySelector(".login-css");
   if (authenticated === "true") {
     hideFilters(); // Masquer le contenu de filterContainer si l'authentification a réussi
     hiddenBanner.style.display = "flex";
     hiddenbtnFirstPicture.style.display = "flex";
     hiddenbtnModal.style.display = "flex";
+logout.innerHTML="logout";
   }
 }
 // Appeler la fonction pour vérifier l'authentification lorsque la page est chargée
@@ -106,7 +108,7 @@ fetch("http://localhost:5678/api/works/")
     displayProjects(projects); // Affichage de tous les projets initialement
   })
   .catch((error) => {
-    console.error("Erreur lors de la récupération des travaux :", error);
+    alert("Erreur lors de la récupération des travaux :", error);
   });
 async function getUpdatedProjects() {
   try {

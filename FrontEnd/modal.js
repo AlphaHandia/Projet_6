@@ -51,26 +51,19 @@ function openModal() {
                 console.log(token);
                 console.log("ok pour destruction");
                 figure.remove(); // retrait de l'élément de la modal
-                location.reload("index.html?authenticated=true");
-                // ici supprimer l'element dans le dom par la method get
+                location.reload("index.html?authenticated=true"); // relocalisation avec authentification réussi et enregistré pour continuer à utiliser le mode création
               } else {
-                console.error("Erreur lors de la suppression du travail");
+                alert("Erreur lors de la suppression du travail");
               }
             })
             .catch(function (error) {
-              console.error(
-                "Erreur lors de la suppression du travail :",
-                error
-              );
+              alert("Erreur lors de la suppression du travail :", error);
             });
         });
       });
     })
     .catch((error) => {
-      console.error(
-        "Erreur lors de la récupération des works depuis l'API :",
-        error
-      );
+      alert("Erreur lors de la récupération des works depuis l'API :", error);
     });
 }
 
@@ -140,6 +133,7 @@ async function openForm() {
   form.appendChild(subtitleImageLabel);
   // input de l'image
   let imageInput = document.createElement("input");
+  imageInput.required = true;
   imageInput.id = "imageInput";
   imageInput.type = "file";
   imageInput.accept = "image/jpeg, image/png"; // Définition des types de fichiers acceptés
@@ -198,6 +192,7 @@ async function openForm() {
   titleInput.type = "text";
   titleInput.ariaLabel = "Titre";
   titleInput.classList = "Input";
+  titleInput.required = true;
   (titleInput.classList = "Input"), "black-text";
   form.appendChild(titleInput);
   // ajout du titre de l'input de selection de categorie de l'image
@@ -209,6 +204,7 @@ async function openForm() {
   const categorySelect = document.createElement("select");
   categorySelect.id = "categorySelect";
   categorySelect.classList = "categorySelect";
+  categorySelect.required = true;
 
   // Récupération les catégories depuis l'API
   fetch("http://localhost:5678/api/categories")
@@ -223,7 +219,7 @@ async function openForm() {
       });
     })
     .catch((error) => {
-      console.error(
+      alert(
         "Erreur lors de la récupération des catégories depuis l'API :",
         error
       );
@@ -297,14 +293,16 @@ function formValidate() {
         if (window.sessionStorage.token && response.status === 201) {
           // Le travail a été ajouté avec succès
           console.log("ok pour validation");
-          location.reload("index.html?authenticated=true"); //actualisation de la page pour afficher le nouveau travail
+          location.reload("index.html?authenticated=true"); // relocalisation avec authentification réussi et enregistré pour continuer à utiliser le mode création
         } else {
           // Gestion des érreurs
-          console.error("Erreur lors de l'ajout du travail");
+          alert(
+            "Erreur, veuillez vérifier que toutes les informations fournies dans le formulaire sont complètes et correctes avant de soumettre."
+          );
         }
       })
       .catch(function (error) {
-        console.error("Erreur lors de l'ajout du travail :", error);
+        console.log("Erreur lors de l'ajout du travail :", error);
       });
 
     // Incrémenter l'ID pour le prochain élément
