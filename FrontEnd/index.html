@@ -13,6 +13,12 @@
 </head>
 <body>
 <header>
+	<div class="positionBanner">
+	<div class="bannerBlack">
+		<a href=""><i class="fa-regular fa-pen-to-square"></i><span id="Modif">Mode édition</span></a>
+		<button>publier les changements</button>
+	</div>
+	<div class="nav">
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>
 		<ul>
@@ -22,11 +28,15 @@
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>
+</div>
+</div>
 </header>
 <main>
 	<section id="introduction">
 		<figure>
 			<img src="./assets/images/sophie-bluel.png" alt="">
+			<a href=""class="btnOpenFirstPicture"><i class="fa-regular fa-pen-to-square"></i><span id="Modif">modifier</span></a>
+
 		</figure>
 		<article>
   </div>
@@ -38,7 +48,7 @@
 		</article>
 	</section>
 	<section id="portfolio">
-		<div class="myprojects">
+		<div class="myprojects" id ="myProjects">
 		<h2>Mes Projets</h2>
 		<!-- Bouton pour ouvrir la modale -->
 		<a href="#modal1"class="btnOpenModal"><i class="fa-regular fa-pen-to-square"></i><span id="Modif">modifier</span></a>
@@ -48,13 +58,13 @@
   <div class="modal-content">
 	
     <span class="close"><i class="fa-solid fa-xmark"></i></span>
-	<div class="btn-add-and-delete">
+	<div class="modal0">
     <h2 >Galerie photo</h2>
     <!-- Contenu du formulaire de la Modale -->
 	<div class="modal-container">
 	</div>
 	<input type="submit" value="Ajouter une photo" class="add-picture"></br>
-	<button class="delete-gallery">Supprimer la galerie</button>
+	<p class="delete-gallery">Supprimer la galerie</p>
 </div>
 	<form class="modalForm" enctype="multipart/form-data">
 	  </form>

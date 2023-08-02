@@ -2,11 +2,33 @@ const gallery = document.querySelector(".gallery");
 const filterContainer = document.querySelector(".filterContainer");
 let allProjects = []; // Variable pour stocker tous les projets
 
+// Fonction pour masquer le contenu de filterContainer
+function hideFilters() {
+  const filterContainer = document.querySelector(".filterContainer");
+  filterContainer.style.display = "none";
+}
+
+// Vérifier si l'authentification a réussi en regardant les paramètres d'URL
+function checkAuthentication() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const authenticated = urlParams.get("authenticated");
+  const hiddenBanner = document.querySelector(".bannerBlack");
+  const hiddenbtnFirstPicture = document.querySelector(".btnOpenFirstPicture");
+  const hiddenbtnModal = document.querySelector(".btnOpenModal");
+  if (authenticated === "true") {
+    hideFilters(); // Masquer le contenu de filterContainer si l'authentification a réussi
+    hiddenBanner.style.display = "flex";
+    hiddenbtnFirstPicture.style.display = "flex";
+    hiddenbtnModal.style.display = "flex";
+  }
+}
+// Appeler la fonction pour vérifier l'authentification lorsque la page est chargée
+document.addEventListener("DOMContentLoaded", checkAuthentication);
 // Fonction pour afficher les filtres
 function displayFilters(categories) {
   // Création du bouton "Tout" pour afficher tous les projets
   const allButton = document.createElement("button");
-  allButton.textContent = "Tout";
+  allButton.textContent = "Tous";
   allButton.classList.add("filterContainer-selected"); // Ajout de la classe CSS par défaut
   allButton.addEventListener("click", function () {
     displayProjects(allProjects); // Affichage de tous les projets
@@ -77,7 +99,6 @@ fetch("http://localhost:5678/api/categories/")
   });
 
 // Récupération de tous les projets depuis l'API
-
 fetch("http://localhost:5678/api/works/")
   .then((response) => response.json())
   .then((projects) => {

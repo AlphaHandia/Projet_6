@@ -8,7 +8,6 @@ let modalContent = document.querySelector(".modal-content");
 // Fonction pour ouvrir la modale
 function openModal() {
   modal.style.display = "flex";
-
   modalContainer.innerHTML = ""; // Effacer le contenu précédent de la modale
 
   // Récupérer les données des works depuis l'API
@@ -51,7 +50,9 @@ function openModal() {
                 // Le travail a été supprimé avec succès
                 console.log(token);
                 console.log("ok pour destruction");
-                figure.remove(); // retrait de l'élément du DOM
+                figure.remove(); // retrait de l'élément de la modal
+                location.reload("index.html?authenticated=true");
+                // ici supprimer l'element dans le dom par la method get
               } else {
                 console.error("Erreur lors de la suppression du travail");
               }
@@ -75,6 +76,7 @@ function openModal() {
 
 // Événement clic sur le bouton pour ouvrir la modale
 btnOpenModal.addEventListener("click", openModal);
+
 // Fonction pour fermer la modale
 function closeModal() {
   modal.style.display = "none";
@@ -91,64 +93,65 @@ window.addEventListener("click", function (event) {
 });
 
 async function openForm() {
+  // ajustement taille modale
   modalContent.style.height = "670px";
-  const btnAddAndDelete = document.querySelector(".btn-add-and-delete");
-  btnAddAndDelete.style.display = "none";
+  // declaration élément parent
+  const modal0 = document.querySelector(".modal0");
+  modal0.style.display = "none";
 
   const form = document.querySelector(".modalForm");
-
   form.id = "modalForm";
   form.enctype = "multipart/form-data";
-
+  // déclaration icone flèche gauche de retour
   let iconArrow = document.createElement("i");
   iconArrow.className = "fa-solid fa-arrow-left";
   form.appendChild(iconArrow);
   iconArrow.addEventListener("click", closeForm);
-
+  // fonction utilisé pour fermer le formulaire avec icone arrow left
   function closeForm() {
     form.innerHTML = "";
-    btnAddAndDelete.style.display = "flex";
-    modalContainer.style.display = "flex";
+    modal0.style.display = "flex";
+    modal0.classList.add("closeForm");
+    modalContent.style.height = "731px";
   }
-
+  // titre formulaire
   let formLabel = document.createElement("h2");
   formLabel.innerHTML = "Ajout photo";
   formLabel.classList = "formLabel";
   form.appendChild(formLabel);
-
+  // icone image formulaire avant insertion de type file
   let iconImage = document.createElement("i");
   iconImage.className = "fa-regular fa-image fa-2xl";
-
   form.appendChild(iconImage);
-
+  // background de l'input type file
   let backgroundLabel = document.createElement("label");
   backgroundLabel.innerText = "";
   backgroundLabel.classList = "backgroundLabel";
   form.appendChild(backgroundLabel);
-
+  // ajout titre pour l'input type file
   let imageLabel = document.createElement("label");
   imageLabel.innerText = " + Ajouter  photo";
   imageLabel.classList = "imageLabel";
   form.appendChild(imageLabel);
-
+  // ajout du soutitre avec types de documents utorisé et taille
   let subtitleImageLabel = document.createElement("p");
   subtitleImageLabel.innerText = "jpg,png : 4mo max";
   subtitleImageLabel.classList = "subtitleImageLabel";
   form.appendChild(subtitleImageLabel);
-
+  // input de l'image
   let imageInput = document.createElement("input");
   imageInput.id = "imageInput";
   imageInput.type = "file";
   imageInput.accept = "image/jpeg, image/png"; // Définition des types de fichiers acceptés
   imageInput.classList = "imageInput";
   form.appendChild(imageInput);
-
+  // affichage en miniature de l'image inséré
   const previewImage = document.createElement("img");
   previewImage.id = "previewImage";
   previewImage.src = ""; // L'image source sera définie lorsque l'utilisateur sélectionne un fichier
   previewImage.classList = "preview-image";
-
   form.appendChild(previewImage);
+  // gestionnaire de l'évènement d'ajout d'une image dans l'input de type file
   imageInput.addEventListener("change", function () {
     const selectedFile = imageInput.files[0]; // Récupération du fichier sélectionné
 
@@ -184,12 +187,12 @@ async function openForm() {
       imageInput.value = "";
     }
   });
-
+  // ajout du titre de l'input titre
   let titleLabel = document.createElement("label");
   titleLabel.innerHTML = "Titre";
   titleLabel.classList = "titleLabel";
   form.appendChild(titleLabel);
-
+  // ajout de l'input pour le titre de l'image
   const titleInput = document.createElement("input");
   titleInput.id = "titleInput";
   titleInput.type = "text";
@@ -197,12 +200,12 @@ async function openForm() {
   titleInput.classList = "Input";
   (titleInput.classList = "Input"), "black-text";
   form.appendChild(titleInput);
-
+  // ajout du titre de l'input de selection de categorie de l'image
   const categoryLabel = document.createElement("label");
   categoryLabel.innerHTML = "Catégorie";
   categoryLabel.classList = "titleLabelCategory";
   form.appendChild(categoryLabel);
-
+  // ajout de l'input des categories
   const categorySelect = document.createElement("select");
   categorySelect.id = "categorySelect";
   categorySelect.classList = "categorySelect";
@@ -227,16 +230,15 @@ async function openForm() {
     });
 
   form.appendChild(categorySelect);
-
+  // ajout de la ligne inférieur de délimitation de champs des formulaire
   const lineform = document.createElement("p");
   lineform.classList = "lineform";
   form.appendChild(lineform);
-
+  // ajout du bouton de type submit au formulaire d'ajout de photo
   const submitButton = document.createElement("button");
   submitButton.type = "submit";
   submitButton.textContent = "Valider";
   submitButton.classList = "submit-button";
-
   form.appendChild(submitButton);
   // Vérification si les champs sont remplis pour désactiver le bouton de soumission
   function handleInputChanges() {
@@ -247,6 +249,7 @@ async function openForm() {
     // Vérification si les champs sont remplis
     if (isImageAcquired && isTitleAcquired && isCategoryAcquired) {
       submitButton.classList.add("disabled");
+      submitButton.style.cursor = "pointer";
     } else {
       submitButton.classList.remove("disabled");
     }
@@ -256,13 +259,12 @@ async function openForm() {
   imageInput.addEventListener("change", handleInputChanges);
   titleInput.addEventListener("input", handleInputChanges);
   categorySelect.addEventListener("change", handleInputChanges);
-
+  // gestionnaire de l'évènement submit au clic du bouton du formulaire d'ajout photo
   submitButton.addEventListener("click", formValidate);
 }
 
-let addPicture = document.querySelector(".add-picture");
-
 // Événement clic sur l'input "Ajouter une photo"
+let addPicture = document.querySelector(".add-picture");
 addPicture.addEventListener("click", openForm);
 
 // Déclaration de la variable pour stocker l'ID
@@ -295,7 +297,7 @@ function formValidate() {
         if (window.sessionStorage.token && response.status === 201) {
           // Le travail a été ajouté avec succès
           console.log("ok pour validation");
-          location.reload(); //actualisation de la page pour afficher le nouveau travail
+          location.reload("index.html?authenticated=true"); //actualisation de la page pour afficher le nouveau travail
         } else {
           // Gestion des érreurs
           console.error("Erreur lors de l'ajout du travail");
@@ -318,7 +320,7 @@ function formValidate() {
 // Evenement au clic de supprimer la galerie
 const btnDeleteGallery = document.querySelector(".delete-gallery");
 btnDeleteGallery.addEventListener("click", deleteGallery);
-
+// déclaration de la fonction de suppression de la totalité de la gallerie (non fonctionnel)
 function deleteGallery() {
   console.log("delete Gallery");
 }
