@@ -285,15 +285,17 @@ function formValidate() {
     fetch("http://localhost:5678/api/works", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${window.sessionStorage.token}`,
+        Authorization: `Bearer ${window.sessionStorage.token}`
+        
       },
-      body: formData,
+      body: formData
     })
       .then(function (response) {
-        if (window.sessionStorage.token && response.status === 201) {
+        if (window.sessionStorage.token && response.ok) {
           // Le travail a été ajouté avec succès
           console.log("ok pour validation");
-          location.reload("index.html?authenticated=true"); // relocalisation avec authentification réussi et enregistré pour continuer à utiliser le mode création
+          
+          location.reload("index.html?authenticated=true") // relocalisation avec authentification réussi et enregistré pour continuer à utiliser le mode création
         } else {
           // Gestion des érreurs
           alert(
