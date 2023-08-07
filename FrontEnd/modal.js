@@ -282,31 +282,26 @@ function formValidate() {
     formData.append("category", category);
 
     // Envoyer les données via fetch
-    fetch("http://localhost:5678/api/works", {
+    fetch("http://localhost:5678/api/works/", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${window.sessionStorage.token}`
+        Authorization: `Bearer ${window.sessionStorage.token} `
         
       },
-      body: formData
+      body: formData,
     })
-      .then(function (response) {
-        if (window.sessionStorage.token && response.ok) {
-          // Le travail a été ajouté avec succès
-          console.log("ok pour validation");
-          
-          location.reload("index.html?authenticated=true") // relocalisation avec authentification réussi et enregistré pour continuer à utiliser le mode création
-        } else {
-          // Gestion des érreurs
-          alert(
-            "Erreur, veuillez vérifier que toutes les informations fournies dans le formulaire sont complètes et correctes avant de soumettre."
-          );
-        }
-      })
-      .catch(function (error) {
-        console.log("Erreur lors de l'ajout du travail :", error);
-      });
-
+    .then(function (response) {
+      if (window.sessionStorage.token && response.ok) {
+        // Le travail a été supprimé avec succès
+        console.log(token);
+        console.log("ok pour ajout");
+        
+        location.reload("index.html?authenticated=true"); // relocalisation avec authentification réussi et enregistré pour continuer à utiliser le mode création
+      } else {
+        alert("Erreur lors de l'ajout du travail");
+      }
+    })
+    
     // Incrémenter l'ID pour le prochain élément
     currentId++;
   } else {

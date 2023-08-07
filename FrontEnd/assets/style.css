@@ -667,6 +667,7 @@ footer nav ul {
 }
 .bannerBlack button {
   height: 38px;
+  border: none;
   border-radius: 25px;
   font-family: Work Sans;
   font-size: 14px;
