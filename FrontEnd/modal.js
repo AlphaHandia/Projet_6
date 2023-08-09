@@ -23,6 +23,7 @@ function openModal() {
 
         img.src = work.imageUrl;
         img.alt = work.title;
+        img.id = work.id;
         figcaption.textContent = "editer";
         deleteIcon.className = "fa-solid fa-trash-can";
         deleteButton.appendChild(deleteIcon);
@@ -40,18 +41,18 @@ function openModal() {
           fetch(`http://localhost:5678/api/works/${work.id}/`, {
             method: "DELETE",
             headers: {
-              Authorization: `Bearer ${window.sessionStorage.token} `,
+              Authorization: `Bearer ${window.localStorage.getItem("token")} `,
               "Content-Type": "application/json",
             },
             body: JSON.stringify({ imageUrl: imageSrc }),
           })
             .then(function (response) {
-              if (window.sessionStorage.token && response.ok) {
+              if (response.ok) {
                 // Le travail a été supprimé avec succès
                 console.log(token);
                 console.log("ok pour destruction");
-                figure.remove(); // retrait de l'élément de la modal
-                location.reload("index.html?authenticated=true"); // relocalisation avec authentification réussi et enregistré pour continuer à utiliser le mode création
+                figure.remove();
+                getUpdatedProjects(); // retrait de l'élément de la modal
               } else {
                 alert("Erreur lors de la suppression du travail");
               }
@@ -84,15 +85,20 @@ window.addEventListener("click", function (event) {
     closeModal();
   }
 });
-
+function closeForm() {
+  form.innerHTML = "";
+  modal0.style.display = "flex";
+  form.style.display = "none";
+  modalContent.style.height = "731px";
+}
+let modal0 = document.querySelector(".modal0");
+let form = document.querySelector(".modalForm");
 async function openForm() {
   // ajustement taille modale
   modalContent.style.height = "670px";
   // declaration élément parent
-  const modal0 = document.querySelector(".modal0");
   modal0.style.display = "none";
 
-  const form = document.querySelector(".modalForm");
   form.id = "modalForm";
   form.enctype = "multipart/form-data";
   // déclaration icone flèche gauche de retour
@@ -101,12 +107,7 @@ async function openForm() {
   form.appendChild(iconArrow);
   iconArrow.addEventListener("click", closeForm);
   // fonction utilisé pour fermer le formulaire avec icone arrow left
-  function closeForm() {
-    form.innerHTML = "";
-    modal0.style.display = "flex";
-    modal0.classList.add("closeForm");
-    modalContent.style.height = "731px";
-  }
+
   // titre formulaire
   let formLabel = document.createElement("h2");
   formLabel.innerHTML = "Ajout photo";
@@ -261,12 +262,17 @@ async function openForm() {
 
 // Événement clic sur l'input "Ajouter une photo"
 let addPicture = document.querySelector(".add-picture");
-addPicture.addEventListener("click", openForm);
+addPicture.addEventListener("click", function () {
+  openForm();
+  modal0.style.display = "none";
+  form.style.display = "flex";
+});
 
 // Déclaration de la variable pour stocker l'ID
 let currentId = 1;
 
-function formValidate() {
+function formValidate(event) {
+  event.preventDefault();
   // Récupérer les valeurs du formulaire
   const title = titleInput.value;
   const category = categorySelect.value;
@@ -285,23 +291,20 @@ function formValidate() {
     fetch("http://localhost:5678/api/works/", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${window.sessionStorage.token} `
-        
+        Authorization: `Bearer ${window.localStorage.getItem("token")}`,
       },
       body: formData,
-    })
-    .then(function (response) {
-      if (window.sessionStorage.token && response.ok) {
-        // Le travail a été supprimé avec succès
-        console.log(token);
+    }).then(function (response) {
+      if (response.ok) {
         console.log("ok pour ajout");
-        
-        location.reload("index.html?authenticated=true"); // relocalisation avec authentification réussi et enregistré pour continuer à utiliser le mode création
+        closeForm();
+        openModal();
+        getUpdatedProjects();
       } else {
         alert("Erreur lors de l'ajout du travail");
       }
-    })
-    
+    });
+
     // Incrémenter l'ID pour le prochain élément
     currentId++;
   } else {

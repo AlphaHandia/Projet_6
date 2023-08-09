@@ -15,7 +15,7 @@ form.addEventListener("submit", function (event) {
   const password = passwordInput.value;
 
   // Envoi des données d'authentification
-  fetch("http://localhost:5678/api/users/login", {
+  fetch("http://localhost:5678/api/users/login/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -23,6 +23,7 @@ form.addEventListener("submit", function (event) {
     body: JSON.stringify({ email, password }),
   })
     .then((response) => {
+      console.log("je suis la");
       if (response.ok) {
         // Authentification réussie
         return response.json(); // Utilisez response.json() pour extraire les données
@@ -31,13 +32,10 @@ form.addEventListener("submit", function (event) {
         emailInput.style.border = "2px solid red";
         passwordInput.style.border = "2px solid red";
       }
-    }) // récupération du token et le stocké dans localStorage et sessionStorage
+    }) // récupération du token et le stocké dans localStorage 
     .then((data) => {
-      let token = "";
-      window.sessionStorage.token = data.token;
-      window.localStorage.setItem("token", token);
+      window.localStorage.setItem("token", data.token);
       console.log(data.token);
-      data.token.export;
       location.assign("index.html?authenticated=true");
     })
     .catch((error) => {

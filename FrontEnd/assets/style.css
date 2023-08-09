@@ -3,8 +3,7 @@
    License: none (public domain)
 */
 body {
-  background: #FFFEF8;
-
+  background: #fffef8;
 }
 html,
 body,
@@ -287,8 +286,6 @@ li:hover {
   width: 1140px;
   margin-bottom: 182px;
   margin-top: 20px;
-  
-
 }
 .Second-footer {
   margin-top: 435px;
@@ -627,12 +624,6 @@ footer nav ul {
   cursor: pointer;
 }
 
-.closeForm {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 730px;
-}
 #error-message {
   display: none;
   font-family: Syne;
@@ -693,7 +684,6 @@ footer nav ul {
 }
 .modal0 {
   text-align: center;
-  overflow: scroll;
-  box-sizing: border-box;
-  max-height: 731px;
+  display: flex;
+  flex-direction: column;
 }

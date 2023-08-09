@@ -21,7 +21,7 @@ function checkAuthentication() {
     hiddenBanner.style.display = "flex";
     hiddenbtnFirstPicture.style.display = "flex";
     hiddenbtnModal.style.display = "flex";
-logout.innerHTML="logout";
+    logout.innerHTML = "logout";
   }
 }
 // Appeler la fonction pour vérifier l'authentification lorsque la page est chargée
@@ -71,9 +71,11 @@ function displayProjects(projects) {
     img.src = project.imageUrl;
     img.alt = project.title;
     figcaption.textContent = project.title;
+    img.id = project.id;
 
     figure.appendChild(img);
     figure.appendChild(figcaption);
+
     gallery.appendChild(figure);
   });
 }
